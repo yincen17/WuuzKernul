@@ -1,0 +1,17 @@
+version: 2.1
+jobs:
+  compile:
+   docker:
+      - image: fadlyas/kernel_dockerfile:latest
+   steps:
+      - run:
+          command: |
+           apt update && apt install -y default-jre nano flex
+           git config --global user.name "yincen17"
+           git config --global user.email "yincen17@users.noreply.github.com"
+           git clone https://github.com/yincen17/WuuzKernul  -b 10 ~/kernel
+workflows:
+  version: 2.1
+  cooking:
+    jobs:
+      - compile
