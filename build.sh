@@ -82,7 +82,7 @@ makekernel() {
 	    END=$(TZ=Asia/Jakarta date +"%s")
 	    DIFF=$(( END - START ))
 	    echo -e "Kernel compilation failed, See buildlog to fix errors"
-	    tg_cast "Build for ${DEVICE} <b>failed</b> in $((DIFF / 60)) minute(s) and $((DIFF % 60)) second(s)! Check Instance for errors @ThisIsTag"
+	    tg_cast "Build for ${DEVICE} <b>failed</b> in $((DIFF / 60)) minute(s) and $((DIFF % 60)) second(s)! Check Instance for errors @Yincen"
 	    exit 1
     fi
 }
@@ -110,7 +110,7 @@ packingkernel() {
     java -jar zipsigner-3.0.jar "${TEMPZIPNAME}" "${ZIPNAME}"
 
     # Ship it to the CI channel
-    "${TELEGRAM}" -f "$ZIPNAME" -t "${TELEGRAM_TOKEN}" -c "${CHATIDQ}"
+    "${TELEGRAM}" -f "$ZIPNAME" -t "${TELEGRAM_TOKEN}" -c "${CHATID}"
 }
 
 # Starting
@@ -123,4 +123,4 @@ makekernel
 packingkernel
 END=$(TZ=Asia/Jakarta date +"%s")
 DIFF=$(( END - START ))
-tg_cast "Build for ${DEVICE} with ${COMPILER_STRING} <b>succeed</b> took $((DIFF / 60)) minute(s) and $((DIFF % 60)) second(s)! @ThisIsTag"
+tg_cast "Build for ${DEVICE} with ${COMPILER_STRING} <b>succeed</b> took $((DIFF / 60)) minute(s) and $((DIFF % 60)) second(s)! @Yincen"
